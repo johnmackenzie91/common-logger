@@ -31,15 +31,16 @@ func Example_Test() {
 			}
 			return f, nil
 		},
+		// we are "hopefully" receiving JSON requests, attempt to log out request using predefined helper func
 		RequestResolver: resolvers.ResolveJSONRequest,
 	})
 
 	// A time is set for example test assertion
 	nowTime := time.Date(2006, 01, 02, 4, 5, 6, 7, time.UTC)
 
-	r, _ := http.NewRequest("GET", "http://example.com", strings.NewReader("{\"key\":\"value\"}"))
 	// A request comes into our app
 	ctx := context.WithValue(context.Background(), "x-request-id", "0000-1111-2222-3333")
+	r, _ := http.NewRequest("GET", "http://example.com", strings.NewReader("{\"key\":\"value\"}"))
 
 	// Log an info
 	sut.Info(ctx, r, "we receive a request", nowTime)

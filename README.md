@@ -21,10 +21,11 @@ or a request object (where you may want to remove PII data). Custom call back fu
 ### Why only three methods?
 
 This interface has come around because on the back of Dave Cheney's [post](https://dave.cheney.net/2015/11/05/lets-talk-about-logging) but with the addition of the `Error(...interface)` method.
+For where a bigger, more poluted interface is needed perhaps we could supplied a wrapper for this lib which exposes those additonal logging methods.
 
 ### But it is tied to logrus!
 Logrus is the logging library I am most confident with. Also creating an abstraction layer would just add more complexity.
 
 ### Any examples?
 
-Example can be found [here]()
+Example can be found [here](https://github.com/johnmackenzie91/common-logger/blob/master/example/examples_test.go)
