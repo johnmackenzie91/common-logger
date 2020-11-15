@@ -29,6 +29,9 @@ func New(logger *logrus.Logger, c Config) Logger {
 	if c.RequestResolver != nil {
 		l.strategies.RequestResolver = c.RequestResolver
 	}
+	if c.ResponseResolver != nil {
+		l.strategies.ResponseResolver = c.ResponseResolver
+	}
 	return l
 }
 

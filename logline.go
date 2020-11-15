@@ -3,6 +3,7 @@ package commonlogger
 import (
 	"context"
 	"net/http"
+	"net/url"
 	"time"
 
 	"github.com/sirupsen/logrus"
@@ -52,6 +53,20 @@ func (l Logger) buildLogLine(opts ...interface{}) logLine {
 					line.fields[key] = val
 				}
 			}
+		case *http.Response:
+			if l.strategies.ResponseResolver != nil {
+				fields, err := l.strategies.ResponseResolver(v)
+				if err != nil {
+					// do something.....
+					continue
+				}
+
+				for key, val := range fields {
+					line.fields[key] = val
+				}
+			}
+		case url.URL:
+			line.fields["url"] = v
 		case error:
 			line.fields["error"] = v
 		case logrus.Fields:
