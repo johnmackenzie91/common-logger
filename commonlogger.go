@@ -2,6 +2,7 @@ package commonlogger
 
 import (
 	"github.com/johnmackenzie91/commonlogger/resolvers"
+
 	"github.com/sirupsen/logrus"
 )
 
@@ -37,7 +38,7 @@ func New(logger *logrus.Logger, c Config) Logger {
 
 // Debug writes an error line
 func (l Logger) Debug(opts ...interface{}) {
-	line := l.buildLogLine(opts)
+	line := l.buildLogLine(opts...)
 	l.logger.WithTime(line.time).WithContext(line.ctx).WithFields(line.fields).Debug(line.msg)
 }
 
